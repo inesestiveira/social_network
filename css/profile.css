@@ -13,6 +13,10 @@
     color: #fff;
 }
 
+a{
+  text-decoration: none;  
+}
+
 #search_box{
     width: 40%;
     border-radius: 5px;
@@ -44,6 +48,8 @@
 #user_name{
     margin-bottom: -20px;
     font-size: 20px; 
+    color: #405d9b;
+    font-weight: bold;
 }
 
 #menu_buttons{
@@ -114,3 +120,50 @@
     width: 50px;
 }
 
+#post_bar{
+    margin-top:20px;
+    background-color: white;
+    padding: 10px;
+}
+
+#post{
+    padding: 4px;
+    font-size: 13px;
+    display:flex;
+    margin-bottom: 20px;
+}
+
+#user_post_img{
+    width: 75px;
+    height: 75px;
+    margin-right: 4px;
+}
+
+#user_post_name{
+    font-weight: bold;
+    
+}
+
+/*timeline*/
+
+#profile_image_container{
+    flex: 1; 
+    min-height: 400px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+#user_bar{
+    min-height: 400px;
+    margin-top: 20px;
+    color: #aaa;
+    font-size: 20px;
+    padding: 8px;
+    text-align: center;
+}
+
+#user_img_timeline{
+    width: 150px;
+    border-radius: 50%;
+    border: solid 2px black;
+
+}

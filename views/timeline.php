@@ -14,42 +14,15 @@
             <img src="../images/troll.png" style="width: 45px; float: right; border-radius: 50px;">
         </div>
     </div>
-    <!--cover area-->
-    <div id="cover">
-        <div style="background-color: white; text-align: center; color: #405d9b">
-            <img id="cover_img" src="../images/cathome.png">
-            <img id="user_img" src="../images/troll.png">
-            <br>
-            <h1 id="user_name">Mr. Troll</h1>
-            <br>
-            <div id="menu_buttons"><a href="timeline.php">Timeline</a></div>
-            <div id="menu_buttons">About</div>
-            <div id="menu_buttons">Friends</div>
-            <div id="menu_buttons">Photos</div>
-        </div>
 
         <!--below cover area-->
         <div id="profile_content_container">
 
-            <div id="profile_friends_container">
-                <div id="friends_bar">
-                    Friends<br>
-                    <div id="friends">
-                        <img id="friends_img" src="../images/nyan.png"><br>
-                        First User
-                    </div>
-                    <div id="friends">
-                        <img id="friends_img" src="../images/grumpy.jpg"><br>
-                        Second User
-                    </div>
-                    <div id="friends">
-                        <img id="friends_img" src="../images/oldcat.jpg"><br>
-                        Third User
-                    </div>
-                    <div id="friends">
-                        <img id="friends_img" src="../images/catfish.jpg"><br>
-                        Fourth User
-                    </div>
+            <div id="profile_image_container">
+                <div id="user_bar">
+                   <img src="../images/troll.png" id="user_img_timeline">
+                   <br>
+                   <div id="user_name"><a href="profile.php">Mr.Troll</a></div>
                 </div>
             </div>
 
