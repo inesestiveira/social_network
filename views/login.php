@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/forms_css.css">
+    <link rel="stylesheet" href="../css/forms_css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,7 +13,7 @@
         <input type="checkbox" id="flip">
         <div class="cover">
             <div class="front">
-                <img src="./images/cathome.png" alt="cat">
+                <img src="../images/cathome.png" alt="cat">
                 <div class="text">
                     <span class="text-1">Every new friend is a <br> new adventure</span>
                     <span class="text-2">Let's get connected</span>
