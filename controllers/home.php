@@ -1,3 +1,3 @@
 <?php
 
-echo "cenas teste";
+require("views/login.php");
