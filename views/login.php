@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <form action="#">
+        <form method="post" action="?controller=access&action=login">
             <div class="form-content">
                 <div class="login-form">
                     <div class="title">Login</div>

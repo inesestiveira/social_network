@@ -12,7 +12,7 @@
     <div class="container">
       <div class="title">Registration <img src="../images/nyan.png" alt="cat"></div>
       <div class="content">
-        <form action="#">
+        <form method="post" action="?controller=access&action=register">
           <div class="user-details">
             <div class="input-box">
               <span class="details">Full Name</span>
