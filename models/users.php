@@ -6,7 +6,7 @@ class Users extends Base {
 
     public function getDetail($username) {
         $query = $this->db->prepare("
-        SELECT user_id, username, password, email, phone, full_name, gender
+        SELECT user_id, username, password, email, phone, full_name
         FROM users
         WHERE username = ?
         ");
@@ -17,16 +17,12 @@ class Users extends Base {
     }
 
     public function create($user) {
-        $userExists = $this->getDetail( $user["username"] );
-
-        if(!empty($userExists)) {
-            return 0;
-        }
+        
         
         $query = $this->db->prepare("
             INSERT INTO users
-            (username, password, email, phone, full_name, gender)
-            VALUES(?, ?, ?, ?, ?, ?)
+            (username, password, email, phone, full_name)
+            VALUES(?, ?, ?, ?, ?)
         ");
 
         $query->execute([
@@ -34,8 +30,8 @@ class Users extends Base {
             password_hash($user["password"], PASSWORD_DEFAULT),
             $user["email"],
             $user["phone"],
-            $user["full_name"],
-            $user["gender"]
+            $user["full_name"]
+            //$user["gender"]
         ]);
 
         return $this->db->lastInsertId();

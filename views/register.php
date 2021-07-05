@@ -11,12 +11,13 @@
   <body>
     <div class="container">
       <div class="title">Registration <img src="../images/nyan.png" alt="cat"></div>
+      <?= (isset($message)) ? '<p role="alert">'. $message .'</p>' : '' ?>
       <div class="content">
         <form method="post" action="?controller=access&action=register">
           <div class="user-details">
             <div class="input-box">
               <span class="details">Full Name</span>
-              <input type="text" name="name" placeholder="Enter your name" required>
+              <input type="text" name="full_name" placeholder="Enter your name" required>
             </div>
             <div class="input-box">
               <span class="details">Username</span>
@@ -60,9 +61,9 @@
             </div>
           </div>
             <div class="button">
-              <input type="submit" value="Let's mingle!">
+              <input type="submit" name="send" value="Let's mingle!">
             </div>
-            <a href="login.php">Already a member? Sign in</a>
+            <a href="?controller=access&action=login">Already a member? Sign in</a>
         </form>
       </div>
     </div>

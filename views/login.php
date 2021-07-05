@@ -20,10 +20,11 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="?controller=access&action=login">
+        <form method="post" action="?controller=acess&action=login">
             <div class="form-content">
                 <div class="login-form">
                     <div class="title">Login</div>
+                    <?= (isset($message)) ? '<p role="alert">'. $message .'</p>' : '' ?>
                     <div class="input-boxes">
                         <div class="input-box">
                             <i class="fas fa-envelope"></i>
@@ -34,9 +35,9 @@
                             <input type="password" name="password" placeholder="Enter your password" required>
                         </div>
                         <div class="button input-box">
-                            <input type="submit" value="Submit">
+                            <input type="submit" name="send" value="Submit">
                         </div>
-                        <div class="text sign-up-text">Don't have an account? <label for="flip"><a href="register.php">Sign up now</a></label></div>
+                        <div class="text sign-up-text">Don't have an account? <label for="flip"><a href="?controller=access&action=register">Sign up now</a></label></div>
                         
                     </div>
                 </div>
