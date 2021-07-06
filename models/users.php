@@ -4,14 +4,14 @@ require("base.php");
 
 class Users extends Base {
 
-    public function getDetail($username) {
+    public function getDetail($user) {
         $query = $this->db->prepare("
         SELECT user_id, username, password, email, phone, full_name
         FROM users
-        WHERE username = ?
+        WHERE email = ?
         ");
 
-        $query->execute([ $username ]);
+        $query->execute([ $user ]);
         
         return $query->fetch( PDO::FETCH_ASSOC );
     }
