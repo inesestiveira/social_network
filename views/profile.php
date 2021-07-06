@@ -11,6 +11,9 @@
     <div id="nav_bar">
         <div style="width: 800px; margin:auto; font-size: 30px;">
             Glamourpuss &nbsp &nbsp<input type="text" id="search_box" placeholder="Search">
+            <a id="logout" href="?controller=access&action=logout">
+                <span style="color:white; font-size: 11px; float: right; margin:15px;">Logout</span>
+            </a>
             <img src="images/troll.png" style="width: 45px; float: right; border-radius: 50px;">
         </div>
     </div>

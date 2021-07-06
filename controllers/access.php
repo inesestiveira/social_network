@@ -72,3 +72,7 @@ else if($_GET["action"] === "login"){
 
     require("views/login.php");
 }
+else if($_GET["action"] === "logout"){
+    session_destroy();
+    header("Location: ?controller=home");
+}
