@@ -6,7 +6,7 @@ session_start();
 
 $controller ="home";
 
-$valid_controllers = ["home", "access", "profile"];
+$valid_controllers = ["home", "access", "profile", "timeline"];
 
 if(
     isset($_GET["controller"]) && 

@@ -6,7 +6,7 @@ $usersModel = new Users();
 
 if($_GET["action"] === "register"){
     if( isset($_POST["send"]) ){
-        print_r($_POST);
+        //print_r($_POST);
         if(
             !empty($_POST["username"]) && 
             mb_strlen($_POST["username"]) >= 3 &&
@@ -24,7 +24,7 @@ if($_GET["action"] === "register"){
         ) {
             $user_id = $usersModel->create( $_POST );
             if(!empty($user_id)) {
-                $user = $usersModel->getDetail( $_POST["username"] );
+                $user = $usersModel->getDetail( $_POST["email"] );
                 
                 $_SESSION["user_id"] = $user_id;
                 $_SESSION["username"] = $user["username"];
@@ -43,7 +43,7 @@ if($_GET["action"] === "register"){
 else if($_GET["action"] === "login"){
 
     if( isset($_POST["send"]) ) {
-        print_r($_POST);
+        
         if(
             mb_strlen($_POST["email"]) >= 3 &&
             mb_strlen($_POST["email"]) <= 252 &&
@@ -57,8 +57,7 @@ else if($_GET["action"] === "login"){
                 password_verify($_POST["password"], $user["password"])
             ){
                 $_SESSION["user_id"] = $user["user_id"];
-                $_SESSION["email"] = $user["email"];
-                $_SESSION["password"] = $user["password"];
+                $_SESSION["username"] = $user["username"];
                 header("Location: ?controller=profile");
             }
             else {

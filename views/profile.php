@@ -23,9 +23,9 @@
             <img id="cover_img" src="images/cathome.png">
             <img id="user_img" src="images/troll.png">
             <br>
-            <h1 id="user_name">Mr. Troll</h1>
+            <h1 id="user_name"><?=$_SESSION["username"]?></h1>
             <br>
-            <div id="menu_buttons"><a href="timeline.php">Timeline</a></div>
+            <div id="menu_buttons"><a href="?controller=timeline">Timeline</a></div>
             <div id="menu_buttons">About</div>
             <div id="menu_buttons">Friends</div>
             <div id="menu_buttons">Photos</div>
