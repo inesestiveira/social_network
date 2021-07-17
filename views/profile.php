@@ -57,45 +57,43 @@
             </div>
 
             <div id="profile_posts_container">
-                <div style="padding: 10px;">
-                    <textarea id="create_post_profile" placeholder="What grinds your gears?"></textarea>
-                    <input id="post_button" type="submit" value="Post">
-                    <br>
+                <div id="create-post" style="padding: 10px;">
+<?php
+    if(isset($alert)) {
+        echo '<p role="alert">' .$alert. '</p>';
+    }
+?>
+                    <form method="post" action="?controller=posts">
+                        <label>
+                            <textarea placeholder="What grinds your gears?" style="resize: none; width: 550px; height: 150px" name="message" required minlength="5" maxlength="65535"></textarea>
+                        </label>
+                        <button id="post_button" type="submit" name="send">Post</button>
+                        <br>
                 </div>
 
 
                 <div id="post_bar">
                     <!--posts-->
-                    <div id="post">
-                        <div>
-                            <img id="user_post_img" src="images/angrycat.jpeg"  alt="user">
-                        </div>
-                        <div>
-                            <div id="user_post_name">User 1</div>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            <br>
-                            <a href="">Like</a> . <a href="">Comment</a> . <span id="post_date">August 23 2021</span>
-                        </div>
-                    </div>
-                    
-                    <!--post 2-->
-                    <div id="post">
-                        <div id="user_post_img">
-                            <img id="user_post_img" src="images/angrycat.jpeg" alt="user">
-                        </div>
-                        <div>
-                            <div id="user_post_name">User 1</div>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            <br>
-                            <a href="">Like</a> . <a href="">Comment</a> . <span id="post_date">August 23 2021</span>
+                    <div id="post"">
+                        <div>   
+                             
+<?php
+    foreach($posts as $post) {
+        echo '
+            <article>
+                <div>
+                    <img id="user_post_img" src="images/angrycat.jpeg"  alt="user">
+                </div>
+                <div>
+                    <div id="user_post_name"><' .$_SESSION["username"]. '></div>
+                    <div class="message">' .$post["message"]. '</div>
+                    <a href="">Like</a> . <a href="">Comment</a> . '.date("j M Y H:i", strtotime($post["post_date"])).'
+                </div>
+            </article>
+            <br>
+        ';
+    }
+?>
                         </div>
                     </div>
                 </div>
