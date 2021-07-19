@@ -25,7 +25,8 @@ if( isset($_POST["send"]) ) {
         $redirect_id = $postsModel->create([
             "message"   =>      $_POST["message"],
             "username"  =>      $_SESSION["username"],
-            "reply_id"  =>      $reply_id
+            "reply_id"  =>      $reply_id,
+            "user_id"   =>      $_SESSION["user_id"]
         ]);
     }
     else {
@@ -36,14 +37,12 @@ if( isset($_POST["send"]) ) {
 
 //view posts
 
+
+
 $post_id = $action;
 
 $posts = $postsModel->getDetail( (int)$post_id  );
 
-if( empty($posts) ) {
-    header("HTTP/1.1 404 Not Found");
-    die("Not found");
-}
 
 
 require("views/profile.php");

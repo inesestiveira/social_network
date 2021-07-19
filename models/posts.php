@@ -7,7 +7,7 @@ class Posts extends Base {
     public function get() {
 
         $query = $this->db->prepare("
-            SELECT post_id, username
+            SELECT post_id, user_id
             FROM posts
             WHERE reply_id IS NULL
         ");
@@ -19,14 +19,15 @@ class Posts extends Base {
     public function getDetail($post_id) {
 
         $query = $this->db->prepare("
-            SELECT post_id, message, post_date, username, reply_id
+            SELECT post_id, user_id, message, post_date
             FROM posts
-            WHERE post_id = ? OR reply_id = ?
+                INNER JOIN users USING (user_id)
+            WHERE posts.user_id = users.user_id
+            ORDER BY post_date DESC
         ");
 
         $query->execute([
-            $post_id,
-            $post_id
+            
         ]);
 
         return $query->fetchAll( PDO::FETCH_ASSOC );
@@ -36,13 +37,14 @@ class Posts extends Base {
 
         $query = $this->db->prepare("
             INSERT INTO posts
-            (message, username)
+            (message, user_id)
             VALUES(?, ?)
         ");
 
         $query->execute([
             strip_tags(trim($data["message"])),
-            strip_tags(trim($data["username"])),
+            //strip_tags(trim($data["username"])),
+            $data["user_id"]
         ]);
 
         $redirect_id = $this->db->lastInsertId();

@@ -30,6 +30,7 @@
             <div id="menu_buttons">Friends</div>
             <div id="menu_buttons">Photos</div>
         </div>
+        
 
         <!--below cover area-->
         <div id="profile_content_container">
@@ -73,29 +74,30 @@
 
 
                 <div id="post_bar">
-                    <!--posts-->
-                    <div id="post"">
-                        <div>   
-                             
+                    <!--posts-->       
+                                
 <?php
     foreach($posts as $post) {
+        //var_dump($posts);
         echo '
-            <article>
-                <div>
-                    <img id="user_post_img" src="images/angrycat.jpeg"  alt="user">
-                </div>
-                <div>
-                    <div id="user_post_name"><' .$_SESSION["username"]. '></div>
-                    <div class="message">' .$post["message"]. '</div>
-                    <a href="">Like</a> . <a href="">Comment</a> . '.date("j M Y H:i", strtotime($post["post_date"])).'
-                </div>
-            </article>
-            <br>
+        <div id="post">
+            <div>
+                <article>
+                    <div>
+                        <img id="user_post_img" src="images/angrycat.jpeg"  alt="user">
+                    </div>
+                    <div>
+                        <div id="user_post_name"><p>' .$_SESSION["username"]. '</p></div>
+                        <div class="message">' .$post["message"]. '</div>
+                        <a href="">Like</a> . <a href="">Comment</a> . '.date("j M Y H:i", strtotime($post["post_date"])).'
+                    </div>
+                </article>
+            </div>
+        </div>
+        <br>
         ';
     }
 ?>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
