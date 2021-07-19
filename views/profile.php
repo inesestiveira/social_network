@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,19 +39,18 @@
 
             <div id="profile_friends_container">
                 <div id="friends_bar">
-                    Friends<br>
-                    <div id="friends">
-                        <img id="friends_img" src="images/nyan.png"><br>
-                        First User
-                    </div>
-                    <div id="friends">
-                        <img id="friends_img" src="images/grumpy.jpg"><br>
-                        Second User
-                    </div>
-                    <div id="friends">
-                        <img id="friends_img" src="images/oldcat.jpg"><br>
-                        Third User
-                    </div>
+                <p>Friends</p><br>
+<?php
+    foreach($users as $user) {
+        echo '
+        <div id="friends">
+            <img id="friends_img" src="images/nyan.png"><br>
+            '.$user["full_name"].'
+        </div>
+        <br>
+        ';
+    }
+?>
                     <div id="friends">
                         <img id="friends_img" src="images/catfish.jpg"><br>
                         Fourth User

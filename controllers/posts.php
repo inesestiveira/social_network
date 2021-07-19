@@ -39,10 +39,19 @@ if( isset($_POST["send"]) ) {
 
 
 
-$post_id = $action;
 
+$post_id = $action;
 $posts = $postsModel->getDetail( (int)$post_id  );
 
 
+if( empty($posts) ) {
+    header("HTTP/1.1 404 Not Found");
+    die("Not found");
+}
+
+if( !empty($posts[0]["reply_id"]) ) {
+    
+    header("Location: ?controller=view-posts&post_id=" . $posts[0]["reply_id"]);
+}
 
 require("views/profile.php");
