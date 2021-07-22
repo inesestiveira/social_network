@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,12 +38,15 @@
             <div id="profile_friends_container">
                 <div id="friends_bar">
                 <p>Friends</p><br>
+                
 <?php
+//print_r($users);
     foreach($users as $user) {
+        
         echo '
         <div id="friends">
             <img id="friends_img" src="images/nyan.png"><br>
-            '.$user["full_name"].'
+            <a href="?controller=profile&'.$user["user_id"].'">'.$user["username"].'</a>
         </div>
         <br>
         ';

@@ -1,9 +1,59 @@
 <?php
 
+
 require("base.php");
+
+class Users extends Base {
+
+//get specific user's details
+    public function getDetail($user) {
+        $query = $this->db->prepare("
+        SELECT user_id, username, password, email, phone, full_name
+        FROM users
+        WHERE email = ? AND user_id = ?
+        ");
+
+        $query->execute([ $user, $user ]);
+        
+        return $query->fetchAll( PDO::FETCH_ASSOC );
+    }
+//get all users
+    public function get() {
+        $query = $this->db->prepare("
+        SELECT user_id, username, password, email, phone, full_name
+        FROM users
+        ");
+
+        $query->execute([]);
+        
+        return $query->fetchAll( PDO::FETCH_ASSOC );
+    }
+
+//create user
+    public function create($user) {
+        
+        
+        $query = $this->db->prepare("
+            INSERT INTO users
+            (username, password, email, phone, full_name)
+            VALUES(?, ?, ?, ?, ?)
+        ");
+
+        $query->execute([
+            $user["username"],
+            password_hash($user["password"], PASSWORD_DEFAULT),
+            $user["email"],
+            $user["phone"],
+            $user["full_name"]
+        ]);
+
+        return $this->db->lastInsertId();
+    }
+}
 
 class Posts extends Base {
 
+//get all posts
     public function get() {
 
         $query = $this->db->prepare("
@@ -16,6 +66,7 @@ class Posts extends Base {
         return $query->fetchAll( PDO::FETCH_ASSOC );
     }
 
+
     public function getDetail($post_id) {
 
         $query = $this->db->prepare("
@@ -26,9 +77,7 @@ class Posts extends Base {
             ORDER BY post_date DESC
         ");
 
-        $query->execute([
-            
-        ]);
+        $query->execute([]);
 
         return $query->fetchAll( PDO::FETCH_ASSOC );
     }
