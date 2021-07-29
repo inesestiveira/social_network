@@ -28,7 +28,7 @@ if($_GET["action"] === "register"){
                 
                 $_SESSION["user_id"] = $user_id;
                 $_SESSION["username"] = $user["username"];
-                header("Location: ?controller=profile");
+                header("?controller=profile&$user[user_id]");
             }
             else{
                 $message = "This user already exists";
@@ -58,7 +58,8 @@ else if($_GET["action"] === "login"){
             ){
                 $_SESSION["user_id"] = $user["user_id"];
                 $_SESSION["username"] = $user["username"];
-                header("Location: ?controller=profile");
+                print_r($user["user_id"]);
+                header("Location: ?controller=profile&$user[user_id]");
             }
             else {
                 $message = "Invalid login data";

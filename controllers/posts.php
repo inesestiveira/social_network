@@ -5,7 +5,7 @@ if( !isset($_SESSION["user_id"]) ){
     exit;
 } 
 
-require("models/posts.php");
+require("models/profile.php");
 
 $postsModel = new Posts();
 
@@ -22,7 +22,7 @@ if( isset($_POST["send"]) ) {
     ) {
         $alert = "Post submitted!";
 
-        $redirect_id = $postsModel->create([
+        $redirect_id = $postsModel->createPost([
             "message"   =>      $_POST["message"],
             "username"  =>      $_SESSION["username"],
             "reply_id"  =>      $reply_id,
@@ -35,15 +35,16 @@ if( isset($_POST["send"]) ) {
 }
 
 
+
 //view logged in users posts
 
-$post_id = "";
+//$post_id = "";
 
-$posts = $postsModel->getDetail( (int)$post_id  );
+//$posts = $postsModel->getDetail( (int)$post_id  );
 
-if( empty($posts) ) {
-    header("HTTP/1.1 404 Not Found");
-    die("Not found");
-}
+//if( empty($posts) ) {
+  //  header("HTTP/1.1 404 Not Found");
+    //die("Not found");
+//}
 
 require("views/profile.php");

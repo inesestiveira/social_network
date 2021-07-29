@@ -6,7 +6,7 @@ require("base.php");
 class Users extends Base {
 
 //get specific user's details
-    public function getDetail($user) {
+    public function getUser($user) {
         $query = $this->db->prepare("
         SELECT user_id, username, password, email, phone, full_name
         FROM users
@@ -18,7 +18,7 @@ class Users extends Base {
         return $query->fetchAll( PDO::FETCH_ASSOC );
     }
 //get all users
-    public function get() {
+    public function getAllUsers() {
         $query = $this->db->prepare("
         SELECT user_id, username, password, email, phone, full_name
         FROM users
@@ -30,7 +30,7 @@ class Users extends Base {
     }
 
 //create user
-    public function create($user) {
+    public function createUser($user) {
         
         
         $query = $this->db->prepare("
@@ -67,48 +67,59 @@ class Posts extends Base {
     }
 
 
-    public function getDetail($post_id) {
+    public function getPost($data) {
 
-        $query = $this->db->prepare("
-            SELECT post_id, user_id, message, post_date
-            FROM posts
-                INNER JOIN users USING (user_id)
-            WHERE posts.user_id = users.user_id
-            ORDER BY post_date DESC
-        ");
-
-        $query->execute([]);
-
-        return $query->fetchAll( PDO::FETCH_ASSOC );
-    }
-
-    public function getAll($post_id){
         $query = $this->db->prepare("
         SELECT post_id, user_id, message, post_date
         FROM posts
         WHERE post_id = ?
+            ORDER BY post_date DESC
+        ");
+
+        $query->execute([$data["post_id"]]);
+
+        return $query->fetchAll( PDO::FETCH_ASSOC );
+    }
+
+    public function showUserPost($data) {
+
+        $query = $this->db->prepare("
+        SELECT message, post_date
+        FROM posts
+        WHERE user_id = ?
+        ORDER BY post_date DESC
+        ");
+
+        $query->execute([$data]);
+
+        return $query->fetchAll( PDO::FETCH_ASSOC );
+    }
+
+    public function getAllPosts(){
+        $query = $this->db->prepare("
+        SELECT post_id, user_id, message, post_date, username
+        FROM posts
         ORDER BY post_date DESC
     ");
 
     $query->execute([
-        $post_id
     ]);
 
     return $query->fetchAll( PDO::FETCH_ASSOC );
     }
 
-    public function create($data) {
+    public function createPost($data) {
 
         $query = $this->db->prepare("
             INSERT INTO posts
-            (message, user_id)
-            VALUES(?, ?)
+            (message, user_id, username)
+            VALUES(?, ?, ?)
         ");
 
         $query->execute([
             strip_tags(trim($data["message"])),
-            //strip_tags(trim($data["username"])),
-            $data["user_id"]
+            $data["user_id"],
+            strip_tags(trim($data["username"]))
         ]);
 
         $redirect_id = $this->db->lastInsertId();

@@ -66,21 +66,24 @@
         echo '<p role="alert">' .$alert. '</p>';
     }
 ?>
-                    <form method="post" action="?controller=posts">
+                    <form method="post" action="?controller=profile">
                         <label>
                             <textarea placeholder="What grinds your gears?" style="resize: none; width: 550px; height: 150px" name="message" required minlength="5" maxlength="65535"></textarea>
                         </label>
                         <button id="post_button" type="submit" name="send">Post</button>
                         <br>
+                    </form>
                 </div>
+
 
 
                 <div id="post_bar">
                     <!--posts-->       
                                 
 <?php
-    foreach($posts as $post) {
-        //var_dump($posts);
+ 
+    foreach($showPosts as $post) {
+       
         echo '
         <div id="post">
             <div>

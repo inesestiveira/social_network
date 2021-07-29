@@ -39,45 +39,32 @@
 
                 <div id="post_bar">
                     <!--posts-->
-                    <div id="post">
-                        <div>
-                            <img id="user_post_img" src="../images/angrycat.jpeg"  alt="user">
-                        </div>
-                        <div>
-                            <div id="user_post_name">User 1</div>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            <br>
-                            <a href="">Like</a> . <a href="">Comment</a> . <span id="post_date">August 23 2021</span>
-                        </div>
+<?php
+    foreach($posts as $post) {
+        echo '
+        <div id="post">
+            <div>
+                <article>
+                    <div>
+                        <img id="user_post_img" src="images/angrycat.jpeg"  alt="user">
                     </div>
-                    
-                    <!--post 2-->
-                    <div id="post">
-                        <div id="user_post_img">
-                            <img id="user_post_img" src="../images/angrycat.jpeg" alt="user">
-                        </div>
-                        <div>
-                            <div id="user_post_name">User 1</div>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            <br>
-                            <a href="">Like</a> . <a href="">Comment</a> . <span id="post_date">August 23 2021</span>
-                        </div>
+                    <div>
+                        <div id="user_post_name"><p>' .$post["username"]. '</p></div>
+                        <div class="message">' .$post["message"]. '</div>
+                        <a href="">Like</a> . <a href="">Comment</a> . '.date("j M Y H:i", strtotime($post["post_date"])).'
                     </div>
+                </article>
+            </div>
+        </div>
+        <br>
+        ';
+    }
+?>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
-
 
 
 </html>
