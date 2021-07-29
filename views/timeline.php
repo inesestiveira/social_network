@@ -30,10 +30,19 @@
             </div>
 
             <div id="profile_posts_container">
-                <div style="padding: 10px;">
-                    <textarea id="create_post_profile" placeholder="What grinds your gears?"></textarea>
-                    <input id="post_button" type="submit" value="Post">
-                    <br>
+                <div id="create-post" style="padding: 10px;">
+<?php
+    if(isset($alert)) {
+        echo '<p role="alert">' .$alert. '</p>';
+    }
+?>
+                    <form method="post" action="?controller=timeline">
+                        <label>
+                            <textarea placeholder="What grinds your gears?" style="resize: none; width: 550px; height: 150px" name="message" required minlength="5" maxlength="65535"></textarea>
+                        </label>
+                        <button id="post_button" type="submit" name="send">Post</button>
+                        <br>
+                    </form>
                 </div>
 
 
