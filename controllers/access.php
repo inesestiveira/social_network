@@ -24,11 +24,11 @@ if($_GET["action"] === "register"){
         ) {
             $user_id = $usersModel->createUser( $_POST );
             if(!empty($user_id)) {
-                $user = $usersModel->getUser( $_POST["email"] );
+                $user = $usersModel->getUser( $_POST["username"] );
                 
                 $_SESSION["user_id"] = $user_id;
-                $_SESSION["email"] = $user["email"];
-                header("?controller=profile&$user[user_id]");
+                $_SESSION["username"] = $user["username"];
+                header("Location: ?controller=profile&$user[user_id]");
             }
             else{
                 $message = "This user already exists";
