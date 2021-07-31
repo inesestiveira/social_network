@@ -61,4 +61,17 @@ class Users extends Base {
 
         return $this->db->lastInsertId();
     }
+
+    public function deleteUser($id)
+    {
+        $query = $this->db->prepare("
+            DELETE FROM users
+            WHERE user_id = ?
+        ");
+        $query->execute([
+            $id
+        ]);
+
+        return $query->fetch(PDO:: FETCH_ASSOC);
+    }
 }

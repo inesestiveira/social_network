@@ -42,7 +42,11 @@
         echo '
         <div id="friends">
             <img id="friends_img" src="images/nyan.png"><br>
-            <a href="?controller=profile&'.$user["user_id"].'">'.$user["username"].'</a>
+            <a href="?controller=deleteUsers&'.$user["user_id"].'">'.$user["username"].'</a>
+            <form method="post" action="?controller=deleteUsers">
+                <input type="hidden" name="user_id" value="' .$user["user_id"]. '">
+                <button id="delete_button" type="submit" name="send">Delete user ID ' .$user["user_id"]. '</button>
+            </form>
         </div>
         <br>
         ';
@@ -56,12 +60,7 @@
             </div>
 
             <div id="profile_posts_container">
-                <div id="create-post" style="padding: 10px;">
-<?php
-    if(isset($alert)) {
-        echo '<p role="alert">' .$alert. '</p>';
-    }
-?>
+               
                 <div id="post_bar">
                     <!--posts-->                             
 <?php
@@ -89,7 +88,10 @@
             <br>
         ';
     }
-    print_r($_POST);
+    if(isset($message)) {
+        echo '<p role="alert">' .$message. '</p>';
+    }
+    //print_r($_POST);
 ?>
             </div>
         </div>

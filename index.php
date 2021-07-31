@@ -10,7 +10,7 @@ if(!empty($url_parts[6])){
 
 $controller ="home";
 
-$valid_controllers = ["home", "access", "profile", "timeline", "posts", "admin_access", "deletePosts"];
+$valid_controllers = ["home", "access", "profile", "timeline", "posts", "admin_access", "deletePosts", "deleteUsers"];
 
 if(
     isset($_GET["controller"]) && 
