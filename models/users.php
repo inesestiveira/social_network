@@ -44,11 +44,10 @@ class Users extends Base {
 
     public function createUser($user) {
         
-        
         $query = $this->db->prepare("
             INSERT INTO users
-            (username, password, email, phone, full_name)
-            VALUES(?, ?, ?, ?, ?)
+            (user_type, username, password, email, phone, full_name)
+            VALUES('user', ?, ?, ?, ?, ?)
         ");
 
         $query->execute([

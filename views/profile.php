@@ -94,7 +94,9 @@
                     <div>
                         <div id="user_post_name"><p>' .$_SESSION["username"]. '</p></div>
                         <div class="message">' .$post["message"]. '</div>
-                        <a href="">Like</a> . <a href="">Comment</a> . '.date("j M Y H:i", strtotime($post["post_date"])).'
+                        <br>
+                        <div>Posted on '.date("j M Y H:i", strtotime($post["post_date"])).'</div>
+                        <a href="">Like</a> . <a href="">Comment</a>
                     </div>
                 </article>
             </div>

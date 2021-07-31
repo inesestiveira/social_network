@@ -35,9 +35,6 @@ if( isset($_POST["send"]) ) {
     }
 }
 
-//$posts = $postsModel->getPost($_SESSION["post_id"]);
-
-
 $showPosts = $postsModel->showUserPost($_SESSION["user_id"]);
 
 $user = $_SESSION["user_id"];

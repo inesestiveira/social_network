@@ -27,7 +27,7 @@ if($_GET["action"] === "register"){
                 $user = $usersModel->getUser( $_POST["email"] );
                 
                 $_SESSION["user_id"] = $user_id;
-                $_SESSION["username"] = $user["username"];
+                $_SESSION["email"] = $user["email"];
                 header("?controller=profile&$user[user_id]");
             }
             else{

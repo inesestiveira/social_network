@@ -76,7 +76,12 @@
                         <div>
                             <div id="user_post_name"><p>' .$post["username"]. '</p></div>
                             <div class="message">' .$post["message"]. '</div>
-                            <a href="">Like</a> . <a href="">Comment</a> . '.date("j M Y H:i", strtotime($post["post_date"])).'
+                            <br>
+                            <div>Posted on '.date("j M Y H:i", strtotime($post["post_date"])).'</div>
+                            <form method="post" action="?controller=deletePosts">
+                            <input type="hidden" name="post_id" value="' .$post["post_id"]. '">
+                                <button id="delete_button" type="submit" name="send">Delete post ID ' .$post["post_id"]. '</button>
+                            </form>
                         </div>
                     </article>
                 </div>
@@ -84,8 +89,8 @@
             <br>
         ';
     }
+    print_r($_POST);
 ?>
-                </div>
             </div>
         </div>
     </div>
