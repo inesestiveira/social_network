@@ -23,7 +23,7 @@
 
             <div id="profile_image_container">
                 <div id="user_bar">
-                   <img src="../images/troll.png" id="user_img_timeline">
+                   <img src="/images/grumpy.jpg" id="user_img_timeline">
                    <br>
                    <div id="user_name"><a href="?controller=profile"><?=$_SESSION["username"]?></a></div>
                 </div>

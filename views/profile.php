@@ -14,14 +14,14 @@
             <a id="logout" href="?controller=access&action=logout">
                 <span style="color:white; font-size: 11px; float: right; margin:15px;">Logout</span>
             </a>
-            <img src="images/troll.png" style="width: 45px; float: right; border-radius: 50px;">
+            <img src="/images/grumpy.jpg" style="width: 45px; float: right; border-radius: 50px;">
         </div>
     </div>
     <!--cover area-->
     <div id="cover">
         <div style="background-color: white; text-align: center; color: #405d9b">
             <img id="cover_img" src="images/cathome.png">
-            <img id="user_img" src="images/troll.png">
+            <img id="user_img" src="/images/grumpy.jpg">
             <br>
             <h1 id="user_name"><?=$_SESSION["username"]?></h1>
             <br>
