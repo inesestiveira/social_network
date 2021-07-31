@@ -1,6 +1,6 @@
 <?php
 
-require("models/users.php");
+require_once("models/users.php");
 
 $usersModel = new Users();
 
@@ -22,9 +22,9 @@ if($_GET["action"] === "register"){
             //mb_strlen($_POST["gender"]) >= 5 &&
            // mb_strlen($_POST["gender"]) <= 15
         ) {
-            $user_id = $usersModel->create( $_POST );
+            $user_id = $usersModel->createUser( $_POST );
             if(!empty($user_id)) {
-                $user = $usersModel->getDetail( $_POST["email"] );
+                $user = $usersModel->getUser( $_POST["email"] );
                 
                 $_SESSION["user_id"] = $user_id;
                 $_SESSION["username"] = $user["username"];
@@ -40,6 +40,7 @@ if($_GET["action"] === "register"){
     }
     require("views/register.php");
 }
+//login
 else if($_GET["action"] === "login"){
 
     if( isset($_POST["send"]) ) {
@@ -50,29 +51,42 @@ else if($_GET["action"] === "login"){
             mb_strlen($_POST["password"]) >= 8 &&
             mb_strlen($_POST["password"]) <= 1000
         ){
-            $user = $usersModel->getDetail( $_POST["email"] );
+            $user = $usersModel->getUser( $_POST["email"] );
 
             if( 
                 !empty($user) && 
                 password_verify($_POST["password"], $user["password"])
             ){
                 $_SESSION["user_id"] = $user["user_id"];
+                $_SESSION["email"] = $user["email"];
                 $_SESSION["username"] = $user["username"];
-                print_r($user["user_id"]);
+    
                 header("Location: ?controller=profile&$user[user_id]");
             }
+            if ($user["user_type"] === "admin") {
+                $_SESSION["user_type"] =  $user["user_type"];
+                $_SESSION["user_id"]   =  $user["user_id"];
+                $_SESSION["email"]  =  $user["email"];
+                $_SESSION["username"] = $user["username"];
+                header("Location: ?controller=admin_access");
+            
+            
+        }
             else {
                 $message = "Invalid login data";
             }
-        }
-        else {
-            $message = "Please fill your data correctly";
-        }
     }
-
+            else {
+                $message = "Please fill your data correctly";
+            }
+        
+    }
     require("views/login.php");
 }
+
+//logout 
 else if($_GET["action"] === "logout"){
     session_destroy();
     header("Location: ?controller=home");
 }
+

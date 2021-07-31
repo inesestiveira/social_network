@@ -1,7 +1,7 @@
 <?php
 
 
-require("base.php");
+require_once("base.php");
 
 class Users extends Base {
 
@@ -22,6 +22,7 @@ class Users extends Base {
         $query = $this->db->prepare("
         SELECT user_id, username, password, email, phone, full_name
         FROM users
+        WHERE user_id > 1
         ");
 
         $query->execute([]);
