@@ -59,14 +59,9 @@ class Posts extends Base {
             $data["user_id"],
             strip_tags(trim($data["username"]))
         ]);
-    
-        $redirect_id = $this->db->lastInsertId();
-        if( !empty($data["reply_id"]) ) {
-            $redirect_id = $data["reply_id"];
-        }
-    
-        return $redirect_id;
     }
+    
+      
 
     public function deletePost($id)
     {

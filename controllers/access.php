@@ -18,13 +18,13 @@ if($_GET["action"] === "register"){
             mb_strlen($_POST["phone"]) >= 9 &&
             mb_strlen($_POST["phone"]) <= 30 &&
             mb_strlen($_POST["full_name"]) >= 5 &&
-            mb_strlen($_POST["full_name"]) <= 150
-            //mb_strlen($_POST["gender"]) >= 5 &&
-           // mb_strlen($_POST["gender"]) <= 15
+            mb_strlen($_POST["full_name"]) <= 150 &&
+            mb_strlen($_POST["gender"]) >= 4 &&
+            mb_strlen($_POST["gender"]) <= 15
         ) {
             $user_id = $usersModel->createUser( $_POST );
             if(!empty($user_id)) {
-                $user = $usersModel->getUser( $_POST["username"] );
+                $user = $usersModel->getUserRegister( $_POST["username"] );
                 
                 $_SESSION["user_id"] = $user_id;
                 $_SESSION["username"] = $user["username"];
@@ -51,7 +51,7 @@ else if($_GET["action"] === "login"){
             mb_strlen($_POST["password"]) >= 8 &&
             mb_strlen($_POST["password"]) <= 1000
         ){
-            $user = $usersModel->getUser( $_POST["email"] );
+            $user = $usersModel->getUserLogin( $_POST["email"] );
 
             if( 
                 !empty($user) && 

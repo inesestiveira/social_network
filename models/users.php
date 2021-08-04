@@ -4,14 +4,27 @@ require_once("base.php");
 
 class Users extends Base {
 
-    public function getUser($user) {
+    //get specific user's details
+    public function getUserLogin($user) {
         $query = $this->db->prepare("
-        SELECT user_id, user_type, username, password, email, phone, full_name
+        SELECT user_id, user_type, username, password, email, phone, full_name, gender
         FROM users
         WHERE email = ?
         ");
 
-        $query->execute([ $user ]);
+        $query->execute([ $user]);
+        
+        return $query->fetch( PDO::FETCH_ASSOC );
+    }
+
+    public function getUserRegister($user) {
+        $query = $this->db->prepare("
+        SELECT user_id, user_type, username, password, email, phone, full_name, gender
+        FROM users
+        WHERE username = ?
+        ");
+
+        $query->execute([ $user]);
         
         return $query->fetch( PDO::FETCH_ASSOC );
     }
@@ -19,7 +32,7 @@ class Users extends Base {
     //gets admin
     public function getAdmin(){
         $query = $this->db->prepare("
-        SELECT user_id, user_type, username, password, email, phone, full_name
+        SELECT user_id, user_type, username, password, email, full_name
         FROM users
         WHERE user_type = 'admin'
         ");
@@ -32,7 +45,7 @@ class Users extends Base {
     //get all users
     public function getAllUsers() {
         $query = $this->db->prepare("
-        SELECT user_id, username, password, email, phone, full_name
+        SELECT user_id, username, email
         FROM users
         WHERE user_id > 1
         ");
@@ -46,8 +59,8 @@ class Users extends Base {
         
         $query = $this->db->prepare("
             INSERT INTO users
-            (user_type, username, password, email, phone, full_name)
-            VALUES('user', ?, ?, ?, ?, ?)
+            (user_type, username, password, email, phone, full_name, gender)
+            VALUES('user', ?, ?, ?, ?, ?, ?)
         ");
 
         $query->execute([
@@ -55,8 +68,8 @@ class Users extends Base {
             password_hash($user["password"], PASSWORD_DEFAULT),
             $user["email"],
             $user["phone"],
-            $user["full_name"]
-            //$user["gender"]
+            $user["full_name"],
+            $user["gender"]
         ]);
 
         return $this->db->lastInsertId();
